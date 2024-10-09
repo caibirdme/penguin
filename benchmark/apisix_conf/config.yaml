@@ -1,0 +1,4 @@
+apisix:
+  node_listen: 9080
+  enable_admin: true
+  admin_key: null  # 禁用 admin key 认证，仅用于测试环境

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx
+    expose:
+      - "80"
+
+  wrk:
+    image: williamyeh/wrk
+    command: -t2 -c400 -d30s http://nginx:80/foo/bar
+    depends_on:
+      - nginx

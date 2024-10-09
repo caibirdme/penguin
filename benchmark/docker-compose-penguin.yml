@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  penguin:
+    build: 
+      dockerfile: ./benchmark/penguin/Dockerfile
+      context: ..
+    expose:
+      - "8080"
+    
+  wrk:
+    image: williamyeh/wrk
+    command: -t2 -c400 -d30s http://penguin:8080/foo/bar
+    depends_on:
+      - penguin
+
+  apisix:
+    image: apache/apisix:3.2.1-debian
+    volumes:
+      - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml:ro
+      - ./apisix_conf/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
+    environment:
+      - APISIX_STAND_ALONE=true
+    ports:
+      - "9080:9080"
+    
+  wrk-apisix:
+    image: williamyeh/wrk
+    command: -t2 -c400 -d30s http://apisix:9080/hello
+    depends_on:
+      - apisix
