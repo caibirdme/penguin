@@ -293,6 +293,35 @@ pub trait Plugin: Send + Sync {
 }
 ```
 
+## Benchmark
+
+Test Penguin
+```bash
+Running 30s test @ http://penguin:8080/foo/bar
+  2 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    13.00ms   13.87ms  66.50ms   80.90%
+    Req/Sec    23.74k     2.16k   27.68k    69.67%
+  1416929 requests in 30.04s, 186.48MB read
+Requests/sec:  47175.79
+Transfer/sec:      6.21MB
+```
+
+Test Nginx
+```bash
+Running 30s test @ http://nginx:80/foo/bar
+  2 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    19.60ms   85.42ms   1.61s    97.40%
+    Req/Sec    24.87k     0.94k   26.70k    72.50%
+  1484571 requests in 30.04s, 227.94MB read
+Requests/sec:  49414.34
+Transfer/sec:      7.59MB
+```
+Penguin is just a little bit slower than Nginx, but it's still very fast and we have a lot of room to improve.
+
+See benchmark directory for more details.
+
 ## TODO
 
 - resolver:
