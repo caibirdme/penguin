@@ -19,7 +19,7 @@ pingora = { version = "0.3.0", features = ["lb", "openssl"] }
 pingora-limits = "0.3.0"
 regex = "1.11.0"
 serde = { version = "1.0.210", features = ["derive"] }
-serde_with = "3.9.0"
+serde_with = "3.11.0"
 serde_yaml = "0.9.34"
 snafu = "0.8.5"
 tokio = { version = "1.40.0", features = ["full"] }
