@@ -6,3 +6,4 @@ routes:
         content_type: "text/plain"
         response_status: 200
         response_example: "hello,world!"
+#END

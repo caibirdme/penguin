@@ -2,17 +2,18 @@ version: '3'
 
 services:
   apisix:
-    image: apache/apisix:3.2.1-debian
+    image: apache/apisix:3.10.0-debian
     volumes:
-      - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml:ro
-      - ./apisix_conf/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
+      - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml
+      - ./apisix_conf/apisix.yaml:/usr/local/apisix/conf/apisix.yaml
     environment:
       - APISIX_STAND_ALONE=true
-    ports:
-      - "9080:9080"
+    expose:
+      - 9080
+    user: "${UID}:${GID}"
     
-  wrk-apisix:
+  wrk:
     image: williamyeh/wrk
-    command: -t2 -c400 -d30s http://apisix:9080/foo/bar
+    command: -t2 -c400 -d5m http://apisix:9080/foo/bar
     depends_on:
       - apisix

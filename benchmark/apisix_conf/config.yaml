@@ -1,4 +1,12 @@
 apisix:
-  node_listen: 9080
-  enable_admin: true
-  admin_key: null  # 禁用 admin key 认证，仅用于测试环境
+  node_listen:
+    - port: 9080
+  nginx_config:
+    error_log_level: crit
+    http:
+      enable_access_log: false
+
+deployment:
+  role: data_plane
+  role_data_plane:
+    config_provider: yaml
