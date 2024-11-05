@@ -1503,9 +1503,9 @@ dependencies = [
 
 [[package]]
 name = "pingora-limits"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c9c71547553d90e99407e6a7304e41190019ec723c6bc36528225e17adfdf0b"
+checksum = "dfcc8e3afeae5a83bbcd415d8d3bb50bea31d2eda2a91f79220b59abab86dd0f"
 dependencies = [
  "ahash",
 ]
