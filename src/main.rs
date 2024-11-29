@@ -21,8 +21,10 @@ use validator::Validate;
 
 fn main() -> Result<(), AppError> {
     let args = Args::parse();
+    let buf_writer = std::io::BufWriter::new(std::io::stdout());
     env_logger::Builder::from_default_env()
         .format_timestamp(None)
+        .target(env_logger::Target::Pipe(Box::new(buf_writer)))
         .init();
     match args.command {
         Command::ValidateConfig => {

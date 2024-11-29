@@ -1,10 +1,10 @@
 apisix:
   node_listen:
     - port: 9080
-  nginx_config:
-    error_log_level: crit
-    http:
-      enable_access_log: false
+nginx_config:
+  error_log_level: warn
+  http:
+    enable_access_log: false
 
 deployment:
   role: data_plane

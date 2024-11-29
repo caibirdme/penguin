@@ -80,6 +80,7 @@ impl ServiceDiscovery for DnsDiscovery {
             .map(|ip| Backend {
                 addr: PingoraSocketAddr::Inet(StdSocketAddr::new(*ip, self.port)),
                 weight: 1,
+                ext: http::Extensions::new(),
             })
             .collect();
         Ok((backends, HashMap::new()))
