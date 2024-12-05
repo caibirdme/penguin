@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 async-trait = "0.1.83"
 bytes = {version = "1.9.0"}
-clap = { version = "4.5.21", features = ["derive"] }
+clap = { version = "4.5.22", features = ["derive"] }
 config = { version = "0.14.1", default-features = false, features = ["yaml"] }
 env_logger = { version = "0.11.5", features = ["unstable-kv"] }
 hickory-resolver = "0.24.1"
