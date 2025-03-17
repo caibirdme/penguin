@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-async-trait = "0.1.85"
+async-trait = "0.1.88"
 bytes = {version = "1.10.0"}
 clap = { version = "4.5.28", features = ["derive"] }
 config = { version = "0.15.6", default-features = false, features = ["yaml"] }
