@@ -66,6 +66,7 @@ pub struct Listener {
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
+#[serde(rename_all = "lowercase")]
 pub enum Protocol {
     #[default]
     HTTP,

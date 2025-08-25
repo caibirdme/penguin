@@ -1,41 +1,42 @@
 global_plugins:
-  - name: cms_rate # count-min-sketch based rate limiter
-    config:
-      overall: 10
-      interval: 1m
-
+    - name: cms_rate # count-min-sketch based rate limiter
+      config:
+          overall: 10
+          interval: 1m
 
 services:
-  - name: service1
-    listeners:
-      - name: listener1
-        address: 0.0.0.0:8080
-        protocol: http
-    routes:
-      - name: public_route
-        match:
-          uri: 
-            exact: /foo/bar
-        plugins:
-          - name: cms_rate
-            config:
-              count: 3
-          - name: echo
-            config:
-              body: "hello, world"
-              status_code: 200
-        cluster: public_backend_cluster
-      - name: qq
-        match:
-          uri: 
-            exact: "/param"
-        cluster: public_backend_cluster
+    - name: service1
+      listeners:
+          - name: listener1
+            address: 0.0.0.0:8080
+            protocol: http
+      routes:
+          - name: public_route
+            match:
+                uri:
+                    exact: /foo/bar
+            plugins:
+                - name: cms_rate
+                  config:
+                      count: 3
+                      total: 5
+                      interval: 1m
+                - name: echo
+                  config:
+                      body: "hello, world"
+                      status_code: 200
+            cluster: public_backend_cluster
+          - name: qq
+            match:
+                uri:
+                    exact: "/param"
+            cluster: public_backend_cluster
 
-    clusters:
-      - name: public_backend_cluster
-        resolver: static
-        lb_policy: round_robin
-        config:
-          endpoints:
-            - 127.0.0.1:9933
-            - 127.0.0.1:9934
+      clusters:
+          - name: public_backend_cluster
+            resolver: static
+            lb_policy: round_robin
+            config:
+                endpoints:
+                    - 127.0.0.1:9933
+                    - 127.0.0.1:9934
